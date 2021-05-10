@@ -74,6 +74,7 @@ public class Dao {
 	}
 
 	public Dto contentView(String bId) {
+		upHit(bId);
 
 		Dto dtos = null;
 
@@ -301,6 +302,61 @@ public class Dao {
 			}
 		}
 
+	}
+
+	private void replyShape(String bGroup, String bStep) {
+		Connection connection = null;
+		PreparedStatement prsm = null;
+
+		try {
+			connection = dataSource.getConnection();
+			String query = "update mvc_board set bStep = bStep + 1 " // 답변줄을 하나 추가한다
+					+ "WHERE bGroup = ? " // 해당 게시글 그룹에 해당되어
+					+ "AND bStep > ?"; // 추가할 답변 수가 기존 답변줄의 수보다 더 적다는 조건하에
+			prsm = connection.prepareStatement(query);
+			prsm.setInt(1, Integer.parseInt(bGroup));
+			prsm.setInt(2, Integer.parseInt(bStep));
+
+			int rn = prsm.executeUpdate();
+			System.out.println("replyShape 반환 결과: " + rn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (prsm != null)
+					prsm.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	private void upHit(String bId) {
+		Connection connection = null;
+		PreparedStatement prsm = null;
+
+		try {
+			connection = dataSource.getConnection();
+			String query = "update mvc_board set bHit = bHit + 1 " + "WHERE bId = ?";
+			prsm = connection.prepareStatement(query);
+			prsm.setString(1, bId);
+
+			int rn = prsm.executeUpdate();
+			System.out.println("upHit 반환 결과: " + rn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (prsm != null)
+					prsm.close();
+				if (connection != null)
+					connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	}
 
 }
