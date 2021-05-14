@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
 
-public class writeCommand implements Command {
+public class WriteCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {

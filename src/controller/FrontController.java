@@ -14,9 +14,9 @@ import command.ContentViewCommand;
 import command.DeleteCommand;
 import command.ListCommand;
 import command.ModifyCommand;
-import command.replyCommand;
+import command.ReplyCommand;
+import command.WriteCommand;
 import command.replyViewCommand;
-import command.writeCommand;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -66,23 +66,23 @@ public class FrontController extends HttpServlet {
 		} else if (cp.equals("/delete.do")) {
 			command = new DeleteCommand();
 			command.execute(request, response);
-			viewPage = "list.do";
+			viewPage = "/list.do";
 		} else if (cp.equals("/modify.do")) {
 			command = new ModifyCommand();
 			command.execute(request, response);
-			viewPage = "list.do";
+			viewPage = "/list.do";
 		} else if (cp.equals("/reply.do")) {
-			command = new replyCommand();
+			command = new ReplyCommand();
 			command.execute(request, response);
-			viewPage = "list.do";
+			viewPage = "/list.do";
 		} else if (cp.equals("/replyView.do")) {
 			command = new replyViewCommand();
 			command.execute(request, response);
 			viewPage = "replyView.jsp";
 		} else if (cp.equals("/write.do")) {
-			command = new writeCommand();
+			command = new WriteCommand();
 			command.execute(request, response);
-			viewPage = "list.do";
+			viewPage = "/list.do";
 		} else if (cp.equals("/writeView.do")) {
 			viewPage = "writeView.jsp";
 		}

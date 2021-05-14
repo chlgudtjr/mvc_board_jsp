@@ -6,11 +6,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>게시글 보기</title>
 </head>
 <body>
-	<table border="1" width="500px">
-	<form action="reply.do" method="post">
+	<table class="table">
+		<form action="reply.do" method="post">
 			<input type="hidden" name="bId" value="${replyView.bId}">
 			<input type="hidden" name="bGroup" value="${replyView.bGroup}">
 			<input type="hidden" name="bStep" value="${replyView.bStep}">
@@ -25,24 +29,23 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" name="bName" value="${replyView.bName}"></td>
+				<td><input class="form-control" type="text" name="bName" value="${replyView.bName}"></td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="bTitle" value="${replyView.bTitle}"></td>
+				<td><input class="form-control" type="text" name="bTitle" value="${replyView.bTitle}"></td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea cols="20" rows="10" name="bContent">${replyView.bContent}</textarea></td>
+				<td><textarea class="form-control" cols="20" rows="10" name="bContent">${replyView.bContent}</textarea></td>
 			</tr>
 		
 			<tr>
 				<td colspan="2">
-					<button type="submit">답변</button>&nbsp;&nbsp;&nbsp;
-					<a href="${pageContext.request.contextPath }/list.do">목록보기</a>
+					<button class="btn btn-primary btn-sm" type="submit">답변</button>&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath }/list.do">목록보기</a>
 				</td>
 			</tr>
-		</tbody>
 		</form>
 	</table>
 </body>
